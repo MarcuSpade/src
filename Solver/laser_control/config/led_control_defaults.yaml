@@ -1,0 +1,5 @@
+{
+  initial_frequency: 0,
+
+  led_pin: 5,
+}

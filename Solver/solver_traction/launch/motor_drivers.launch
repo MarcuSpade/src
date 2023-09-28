@@ -1,0 +1,54 @@
+<?xml version="1.0"?> 
+<launch>
+    <!--<arg name="dev1" default="/dev/ttyUSB2"/>
+    <arg name="dev2" default="/dev/ttyUSB3"/>-->
+    <arg name="dev1" default="/dev/ROBOCLAW_FRONT"/>
+    <arg name="dev2" default="/dev/ROBOCLAW_BACK"/>
+    <arg name="baud" default="19200"/>
+    <arg name="address1" default="128"/>
+    <arg name="address2" default="129"/>
+    <arg name="max_speed" default="0.5"/>
+    <arg name="ticks_per_meter" default="14256"/>
+    <arg name="base_width" default="0.430"/>
+    <arg name="cmd_frequency" default="10"/>
+    <arg name="frame_id_front" default="odom_front"/>
+    <arg name="frame_id_back" default="odom_back"/>
+    <arg name="child_frame_id_front" default="base_link"/>
+    <arg name="child_frame_id_back" default="base_link"/>
+
+    <node pkg="roboclaw_node" type="roboclaw_node.py" name="roboclaw_node_front" output="screen">
+        <param name="~dev" value="$(arg dev1)"/>
+        <param name="~baud" value="$(arg baud)"/>
+        <param name="~address" value="$(arg address1)"/>
+        <param name="~max_speed" value="$(arg max_speed)"/>
+        <param name="~ticks_per_meter" value="$(arg ticks_per_meter)"/>
+        <param name="~base_width" value="$(arg base_width)"/>
+        <param name="~cmd_frequency" value="$(arg cmd_frequency)"/>
+        <param name="~frame_id" value="$(arg frame_id_front)"/>
+        <param name="~child_frame_id" value="$(arg child_frame_id_front)"/>
+        <!-- <param name="tf_prefix" value="front" /> -->
+        <remap from="cmd_vel" to="solver_traction/cmd_vel" />
+        <remap from="odom" to="odom_raw_not_used" />
+    </node>
+    
+    <node pkg="roboclaw_node" type="roboclaw_node.py" name="roboclaw_node_back" output="screen">
+        <param name="~dev" value="$(arg dev2)"/>
+        <param name="~baud" value="$(arg baud)"/>
+        <param name="~address" value="$(arg address2)"/>
+        <param name="~max_speed" value="$(arg max_speed)"/>
+        <param name="~ticks_per_meter" value="$(arg ticks_per_meter)"/>
+        <param name="~base_width" value="$(arg base_width)"/>
+        <param name="~cmd_frequency" value="$(arg cmd_frequency)"/>
+        <param name="~frame_id" value="$(arg frame_id_back)"/>
+        <param name="~child_frame_id" value="$(arg child_frame_id_back)"/>
+        <!-- <param name="tf_prefix" value="back" /> -->
+        <remap from="cmd_vel" to="solver_traction/cmd_vel" />
+        <remap from="odom" to="odom_raw" />
+    </node>
+
+    <!--<node pkg="diagnostic_aggregator" type="aggregator_node"
+          name="diagnostic_aggregator">
+        <rosparam command="load"
+                  file="$(find roboclaw_node)/config/roboclaw_diag.yaml"/>
+    </node>-->
+</launch>

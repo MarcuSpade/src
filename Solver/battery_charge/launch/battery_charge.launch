@@ -1,0 +1,9 @@
+<?xml version="1.0"?> 
+<launch>
+    
+        <!-- PARAMS -->
+    <rosparam command ="load" file="$(find battery_charge)/config/battery_charge.yaml"/>
+
+    <node pkg="battery_charge" type="battery_charge_node.py" name="battery_charge" args="1" />    
+    
+</launch>

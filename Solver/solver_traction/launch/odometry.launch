@@ -1,0 +1,10 @@
+<launch>
+
+  <!-- PARAMS -->
+  <rosparam 
+command ="load" 
+file="$(find solver_traction)/config/hardware.yaml"/>
+
+<node pkg="topic_tools" type="relay_fields" args='back/odom /odom ""' />
+
+</launch>

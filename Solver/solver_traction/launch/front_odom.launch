@@ -1,0 +1,14 @@
+<!-- This launchfile starts node laser_raw_node on robotOS in CPP -->
+<!-- laser_raw_node reads adc_raw inputs and converts to two topics wish laser distances -->
+<launch>
+
+  <!-- Run laser_raw_node -->
+  <node 
+    name="front_odometry" 
+    pkg="solver_traction"   
+    type="front_odometry_node"
+    required="true"
+    output="screen"
+  />
+
+</launch>

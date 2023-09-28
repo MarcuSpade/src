@@ -1,0 +1,17 @@
+<launch>
+<!-- ARGS -->
+<!-- Arquivo launch de testes dos pacotes -->
+<!--launchs de tração -->
+<include file="$(find md49_base_controller)/launch/md49_base_controller_local.launch"/>
+<!--launchs laser control-->
+<include file="$(find adc_raw)/launch/adc_raw_local.launch"/>
+<include file="$(find laser_raw)/launch/laser_raw_local.launch"/>
+<include file="$(find laser_control)/launch/laser_control_local.launch"/>
+<include file="$(find laser_control)/launch/led_control_local.launch"/>
+<include file="$(find solver_traction)/launch/motor_controller.launch"/>
+<include file ="$(find temperature_w1_raw)/launch/ic_temperature_local.launch"/>
+<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
+<include file="$(find usb_cam)/launch/usb_cam-test.launch"/>
+<node pkg="web_video_server" name="web_video_server" type="web_video_server"/>
+
+</launch>

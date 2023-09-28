@@ -1,0 +1,3 @@
+laser_raw:
+# laser_raw acquisition_rate recomended: same as adc_raw
+  acquisition_rate: 100

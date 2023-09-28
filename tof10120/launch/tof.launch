@@ -1,0 +1,15 @@
+<?xml version="1.0"?> 
+<launch>
+
+    <rosparam command ="load" file="$(find tof10120_rangefinder)/config/tof10120.yaml"/>
+
+    <group ns="tof">
+        <node pkg="tof10120_rangefinder" type="tof10120_node.py" name="sensor_fl" />
+        <node pkg="tof10120_rangefinder" type="tof10120_node.py" name="sensor_fm" />
+        <node pkg="tof10120_rangefinder" type="tof10120_node.py" name="sensor_fr" />
+        <node pkg="tof10120_rangefinder" type="tof10120_node.py" name="sensor_bl" />
+        <node pkg="tof10120_rangefinder" type="tof10120_node.py" name="sensor_bm" />
+        <node pkg="tof10120_rangefinder" type="tof10120_node.py" name="sensor_br" />
+    </group>
+    
+</launch>

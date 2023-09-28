@@ -1,0 +1,7 @@
+<!-- This launchfile starts node led_control on robotOS in Python-->
+<!-- led_control.py reads leds_frequency topic to fade -->
+<launch>
+<rosparam file="$(find laser_control)/config/led_control.yaml" />
+<node pkg="laser_control" name="led_control" type="led_control.py" output="screen"> 
+</node>
+</launch>

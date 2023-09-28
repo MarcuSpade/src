@@ -1,0 +1,20 @@
+<!-- This launchfile starts node laser_control on robotOS in CPP-->
+<!-- laser_raw_node reads vel comands and laser distances to stop SolverBot -->
+<launch>
+
+  <!-- Load parameters for laser_control_node -->
+  <rosparam
+    command="load"
+    file="$(find laser_control)/config/laser_control_defaults.yaml"
+  />
+
+  <!-- Run led_control_node -->
+  <node 
+    name="laser_control" 
+    pkg="laser_control"   
+    type="laser_control_node"
+    required="true"
+    output="screen"
+  />
+
+</launch>

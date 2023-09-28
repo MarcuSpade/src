@@ -1,0 +1,19 @@
+<!-- This launchfile starts node adc_raw_node in CPP-->
+<launch>
+
+  <!-- Load parameters for adc_raw_node -->
+  <rosparam
+    command="load"
+    file="$(find adc_raw)/config/adc_raw_defaults.yaml"
+  />
+
+  <!-- Run adc_raw_node -->
+  <node 
+    name="adc_raw" 
+    pkg="adc_raw"   
+    type="adc_raw_node"
+    required="true"
+    output="screen"
+  />
+
+</launch>

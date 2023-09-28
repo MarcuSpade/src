@@ -1,0 +1,4 @@
+w1_temperature_sensor:
+  publish_topic: "/ic/temperature"
+  acquisition_rate: 0.1
+  base_dir: '/sys/bus/w1/devices/'

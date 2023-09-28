@@ -1,0 +1,9 @@
+battery:
+  acquisition_rate: 1
+  readings_topic: "/adc_data"
+  data_topic: "/battery_state"
+  HIGH_READING: 4095 # 12 bit
+  LOW_READING: 0
+  READING_RATIO_1: 0.101694217 # 3K9/36K9 adjusted to tolerance
+  READING_RATIO_2: 0.101694217 # 3K9/36K9 adjusted to tolerance
+  VREF: 3.0

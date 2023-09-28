@@ -1,0 +1,8 @@
+control:
+  acquisition_rate: 10
+  subscribe_topic1: "/laser_front"
+  subscribe_topic2: "/laser_back"    
+  subscribe_topic3: "/solver_traction/cmd_vel"
+vel:
+  publish_topic: "/cmd_vel"
+  

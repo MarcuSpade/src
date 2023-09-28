@@ -1,0 +1,6 @@
+
+<launch>
+<rosparam file="$(find laser_raw)/config/laser_raw.yaml" />
+<node pkg="laser_raw" name="laser_raw" type="laser.py" output="screen"> 
+</node>
+</launch>

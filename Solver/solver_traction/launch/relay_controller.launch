@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+	<node pkg="solver_traction" name="relay_controller_node" type="relay_controller.py"/>
+</launch>

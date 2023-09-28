@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<robot name="solver" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+ 
+  <!-- Import Rviz colors -->
+  <xacro:include filename="$(find solver_description)/urdf/materials.xacro" />
+
+  <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link_raw origin -->
+ <!-- Used for fixing robot to Gazebo 'chassis' -->
+    <link name="base_link_raw">
+      <visual>
+          <origin xyz="0.0 0.0 0.04375" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.01 0.01 0.01"/>
+        </geometry>
+        <!-- <material name="blue"/> -->
+      </visual>
+
+    </link>
+
+    <link name="laser_raw">
+        <visual>
+            <origin xyz="0 0 0 " rpy="0 0 1.57"/> 
+            <geometry>
+            <box size="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+<!--Joints -->
+
+
+
+    <!-- join between chassi and rplidar_a2 links-->
+    <joint name="laser_raw" type="fixed">
+      <origin rpy="0 0 3.14" xyz="0.17 0 0.25"/>
+      <parent link="base_link_raw"/>
+      <child link="laser_raw"/>
+    </joint>
+
+
+
+</robot>
+
+<!-- <node pkg ="tf" type ="static_transform_publisher" name ="LIDAR_broadcaster" args ="0.17 0 0.25 3.14 0 0 base_link_raw laser_raw 100" />
+<node pkg ="tf" type ="static_transform_publisher" name ="LIDAR_virtual" args ="0.17 0 0.25 3.14 0 0 base_link_raw laser_rawVirtual 100" /> -->

@@ -1,0 +1,23 @@
+tof:
+  acquisition_rate: 80
+  tof_topic: "/tof_distance"
+  i2c_address: 0x40
+  average_filter_size: 4
+  sensor_fl:
+    tof_topic: "/tof_fl"
+    i2c_address: 0x4e
+  sensor_fm:
+    tof_topic: "/tof_fm"
+    i2c_address: 0x50
+  sensor_fr:
+    tof_topic: "/tof_fr"
+    i2c_address: 0x52
+  sensor_bl:
+    tof_topic: "/tof_bl"
+    i2c_address: 0x54
+  sensor_bm:
+    tof_topic: "/tof_bm"
+    i2c_address: 0x56
+  sensor_br:
+    tof_topic: "/tof_br"
+    i2c_address: 0x58

@@ -1,0 +1,16 @@
+<launch>
+  <!-- ARGS -->
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+  <!-- PARAMS -->
+  <rosparam file="$(find solver_traction)/config/hardware.yaml" />
+
+  <!-- NODES -->
+  
+  <!-- Publish SolverBot vel -->
+  <node pkg="solver_traction" name="motor_control_node" type="motor_control_node.py"  launch-prefix="$(arg launch_prefix)"/>
+  <node pkg="solver_traction" name="solver_odom_node" type="solver_odom_node.py"  launch-prefix="$(arg launch_prefix)"/>
+
+</launch>

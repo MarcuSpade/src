@@ -1,0 +1,7 @@
+<!-- This launchfile starts node laser_control on robotOS in Python-->
+<!-- laser_control.py reads vel comands and laser distances to stop SolverBot -->
+<launch>
+<rosparam file="$(find laser_control)/config/laser_control.yaml" />
+<node pkg="laser_control" name="laser_control" type="laser_control.py" output="screen"> 
+</node>
+</launch>

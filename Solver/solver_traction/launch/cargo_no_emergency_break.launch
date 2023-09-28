@@ -1,0 +1,36 @@
+<?xml version="1.0"?> 
+<launch>
+<!-- ARGS -->
+  
+<!--launchs de tração -->
+<node pkg="solver_traction" name="relay_controller_node" type="relay_controller.py"/>
+<include file="$(find solver_traction)/launch/motor_controller_no_emergency_break.launch"/>
+<include file="$(find solver_description)/launch/bringup.launch"/>
+<include file="$(find robot_pose_ekf)/robot_pose_ekf.launch"/>
+<include file="$(find solver_traction)/launch/ekf_odom_generate.launch"/>
+<!--launchs laser control-->
+<include file="$(find adc_raw)/launch/adc_raw_local.launch"/>
+<include file="$(find battery_charge)/launch/battery_charge.launch"/>
+<!--include file="$(find laser_raw)/launch/laser_raw_local.launch"/-->
+<include file="$(find tof10120_rangefinder)/launch/tof.launch"/>
+<!--<include file="$(find laser_control)/launch/laser_control_local.launch"/>-->
+<!--<include file="$(find laser_control)/launch/led_control_local.launch"/>-->
+
+<!--include file ="$(find temperature_w1_raw)/launch/ic_temperature.launch"/-->
+
+<node pkg="solver_traction" name="night_mode_node" type="night_mode.py"/>
+<node pkg="solver_traction" name="remote_io_md49" type="remote_io_md49.py"/>
+
+<!--node pkg="solver_traction" name="charger_i2c" type="charger_i2c.py"/-->
+<!--<node pkg="web_video_server" name="web_video_server" type="web_video_sever"/>-->
+
+<!--rosbridge server para comunicação com o aplicativo-->
+<include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
+<include file="$(find usb_cam)/launch/usb_cam-test.launch"/>
+<node pkg="web_video_server" name="web_video_server" type="web_video_server">
+    <param name="quality" value="50" />
+    <param name="default_transport" value="compressed" />
+</node>
+</launch>
+

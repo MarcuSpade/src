@@ -1,0 +1,72 @@
+#ifndef MCP3208_CLASS_H_
+#define MCP3208_CLASS_H_
+#define BCM2835_HAVE_LIBCAP
+#include <bcm2835.h>
+#include <stdio.h>
+
+class MCP3208
+{   
+    public:
+
+    MCP3208()
+    {
+    }
+
+    ~MCP3208()
+    {
+        bcm2835_spi_end();
+        bcm2835_close();   
+    }
+
+    char generateMsg()
+    {   char msgPart1 {0x00};                // Channel will receive -> 0 0 0 0 0 a b c <- binary containing channel to be read
+        char msgPart2 {0x00};                // Channel will be divided in 2 msgs to make two chars to be sent in SPI
+        msg1 = {0x04};                       // 0 0 0 0 0 1 0 0  
+        mode = mode << 1;                    // 0 0 0 0 0 0 x 0
+        msg1 = msg1 | mode;                  // 0 0 0 0 0 1 x 0
+        msgPart1 = channel >> 2;             // 0 0 0 0 0 0 0 a
+        msg1 = msg1 | msgPart1;              // 0 0 0 0 0 1 x a
+        msg2 = channel << 6;                 // b c 0 0 0 0 0 0
+        send_data[0] = msg1;
+        send_data[1] = msg2;
+    }
+
+    void defineSPI()
+    {
+        bcm2835_spi_begin();
+        bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);      // The default
+        bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);                   // The default
+        bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_1); // The default
+        bcm2835_spi_chipSelect(BCM2835_SPI_CS1);                      // The default
+        bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS1, LOW);      // the default
+    }
+
+    uint16_t readChannel(char input)
+    {   
+        channel = input;
+        generateMsg();
+        bcm2835_spi_transfernb(send_data,read_data,3);
+        read_data[1]=read_data[1]<<4; //b11 b10 b9 b8 0 0 0 0
+        result = result<<4; //0000 b11 b10 b9 b8 0000 0000
+        result = result | read_data[2]; // 0 0 0 0 b11 b10 b9 b8 b7 b6 b5 b4 b3 b2 b1 b0 
+        return result;
+    }
+
+    void setMode(char input)
+    {
+        mode = input;
+    }
+
+    private:
+    
+    char mode {1};
+    char channel {0};
+    char msg1 {0x06};
+    char msg2 {0x00};
+    uint16_t result = 0x0000;
+    char send_data[3] = {0x00,0x00,0x00};
+    char read_data[3] = {0x00,0x00,0x00};
+
+};
+
+#endif

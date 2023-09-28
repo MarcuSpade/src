@@ -1,0 +1,7 @@
+<!-- This launchfile starts node ic_temp.py on robotOS in CPP -->
+<!-- temperature_w1_raw_node reads internal temperature using I²C protocol-->
+<launch>
+<rosparam file="$(find temperature_w1_raw)/config/w1_temperature_sensor.yaml" />
+<node pkg="temperature_w1_raw" name="ic_temperature" type="ic_temp.py" output="screen"> 
+</node>
+</launch>

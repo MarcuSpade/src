@@ -1,0 +1,7 @@
+<launch>
+  <node name="ublox_gps_node" pkg="ublox_gps" type="ublox_gps" clear_params="true" output="screen">
+    <rosparam command="load" file="$(find ublox_gps)/config/nmea.yaml"/>
+    <param name="device" value="/dev/ublox_gps"/>
+    <param name="frame_id" value="ublox_frame"/>
+  </node>
+</launch>

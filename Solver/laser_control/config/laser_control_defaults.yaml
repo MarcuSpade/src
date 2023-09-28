@@ -1,0 +1,20 @@
+laser_control:
+  frontHorizontal1: 0
+  frontVertical: 1
+  frontHorizontal2: 2
+  backHorizontal1: 0
+  backVertical: 1
+  backHorizontal2: 2
+  acquisition_rate: 30.0
+  tof_sensor_fl_topic: "/tof_fl"
+  tof_sensor_fm_topic: "/tof_fm"
+  tof_sensor_fr_topic: "/tof_fr"
+  tof_sensor_bl_topic: "/tof_bl"
+  tof_sensor_bm_topic: "/tof_bm"
+  tof_sensor_br_topic: "/tof_br"
+  receive_vel_topic: "/cmd_vel"
+  publish_vel_topic: "/solver_traction/cmd_vel"
+  stop_frontal: 200
+  stop_frontal_fast: 450
+  vertical_degree: 300
+  reduction_rate: 0.03

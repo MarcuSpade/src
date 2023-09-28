@@ -1,0 +1,6 @@
+<!-- This launchfile starts node adc_mcp3208.py in python-->
+<launch>
+<rosparam file="$(find adc_raw)/config/adc_raw.yaml" />
+<node pkg="adc_raw" name="adc_raw" type="adc_mcp3208.py" output="screen"> 
+</node>
+</launch>

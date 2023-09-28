@@ -1,0 +1,41 @@
+<launch>
+<!-- ARGS -->
+<!-- Modificado para Doc da Fabiana-->
+<!--launchs de tração -->
+<!-- <include file="$(find md49_base_controller)/launch/md49_base_controller_local.launch"/> -->
+<include file="$(find solver_traction)/launch/motor_controller.launch"/>
+<!--<include file="$(find solver_traction)/launch/front_odom.launch"/>-->
+
+<!--launchs laser control (evitar cair em escadas)-->
+<include file="$(find adc_raw)/launch/adc_raw_local.launch"/>
+<include file="$(find laser_raw)/launch/laser_raw_local.launch"/>
+<include file="$(find laser_control)/launch/laser_control_local.launch"/>
+<include file="$(find laser_control)/launch/led_control_local.launch"/>
+<include file="$(find solver_traction)/launch/ekf_odom_generate.launch"/>
+
+<!--<include file ="$(find temperature_w1_raw)/launch/ic_temperature.launch"/>-->
+
+<!-- Sensores Imu - Encoder - LIDAR-->
+<!--include file="$(find ros_imu_bno055)/launch/imu.launch"/-->
+<!-- <include file="$(find robot_pose_ekf)/robot_pose_ekf.launch"/> -->
+<!-- <node pkg="solver_traction" name="night_mode_node" type="night_mode.py"/> -->
+<node pkg="solver_traction" name="remote_io_md49" type="remote_io_md49.py"/>
+<!--node pkg="solver_traction" name="charger_i2c" type="charger_i2c.py"/-->
+<!--<node pkg="web_video_server" name="web_video_server" type="web_video_sever"/>-->
+<include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+<!-- <include file="$(find usb_cam)/launch/usb_cam-test2.launch"/> -->
+
+<!--rosbridge server para comunicação com o aplicativo web-->
+<!--<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
+<include file="$(find usb_cam)/launch/usb_cam-test.launch"/>
+<node pkg="web_video_server" namusb_cam/e="web_video_server" type="web_video_server"/>
+-->
+
+<!-- Static Transforms-->
+<!-- <node pkg ="tf" type ="static_transform_publisher" name ="LIDAR_broadcaster" args ="0.17 0 0.25 3.14 0 0 base_link laser 100" />
+<node pkg ="tf" type ="static_transform_publisher" name ="LIDAR_virtual" args ="0.17 0 0.25 3.14 0 0 base_link laserVirtual 100" /> -->
+<!--node pkg ="tf" type ="static_transform_publisher" name ="s_broadcaster" args ="0 0 0 0 0 0 base_link imu_link 100" /-->
+<!-- Robot Localization para sincronizar odometria chamada no Launcher da camera-->
+
+</launch>
+

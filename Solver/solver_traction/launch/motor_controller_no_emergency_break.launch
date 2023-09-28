@@ -1,0 +1,20 @@
+<?xml version="1.0"?> 
+<launch>
+
+    <!-- PARAMS -->
+    <rosparam command ="load" file="$(find solver_traction)/config/hardware.yaml"/>
+    <!--INITIALIZING MD25 BASE CONTROLLER-->
+    <include file="$(find gy88_interface_to_imu_data)/launch/imu.launch"/> 
+    <!--<node pkg="topic_tools" name="relay_imu_data" type="relay" args="/imu/data /imu_data">
+    </node>-->
+    <include file="$(find solver_traction)/launch/motor_drivers_no_emergency_break.launch"/> 
+    <!--<node pkg="tf" type="static_transform_publisher" name="base_link_tf_gy88" args="0 0 0 0 0 0 1 base_link gy88 100 " />-->
+    <!-- <include file="$(find md49_controller)/launch/md49_driver_local.launch"/> -->
+    <!--READ ENCODERS AND TRANSFORM IT INTO SOLVER ODOMETRY-->
+    <!--<node pkg="solver_traction" name="solver_odom_node" type="solver_odom_node.py" output="screen" />-->
+    <!--READ ENCODERS AND TRANSFORM IT INTO MOTORS RPM-->
+    <!--<node pkg="solver_traction" name="motor_control_node" type="motor_control_node.py" output="screen"> 
+        <remap from="cmd_vel" to="solver_traction/cmd_vel" />
+    </node>-->
+
+</launch>

@@ -1,0 +1,7 @@
+adc:
+  acquisition_rate: 10
+  subscribe_topic: "/adc_data"
+laserFront:
+  publish_topic1: "laser_front"
+laserBack:
+  publish_topic2: "laser_back"

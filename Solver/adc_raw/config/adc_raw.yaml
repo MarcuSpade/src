@@ -1,0 +1,3 @@
+adc:
+  publish_topic: "/adc_data"
+  acquisition_rate: 5

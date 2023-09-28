@@ -1,0 +1,21 @@
+<!-- This launchfile starts node laser_raw_node on robotOS in CPP -->
+<!-- laser_raw_node reads adc_raw inputs and converts to two topics wish laser distances -->
+<launch>
+
+  <!-- Load parameters for laser_raw_node -->
+  <rosparam
+    command="load"
+    ns="/laser_raw"
+    file="$(find laser_raw)/config/laser_raw_defaults.yaml"
+  />
+
+  <!-- Run laser_raw_node -->
+  <node 
+    name="laser_raw" 
+    pkg="laser_raw"   
+    type="laser_raw_node"
+    required="true"
+    output="screen"
+  />
+
+</launch>

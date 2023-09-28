@@ -1,0 +1,21 @@
+<!-- This launchfile starts node led_control on robotOS in CPP -->
+<!-- led_control_node reads leds_frequency topic to fade -->
+<launch>
+
+  <!-- Load parameters for led_control_node -->
+  <rosparam
+    command="load"
+    ns="/led_control"
+    file="$(find laser_control)/config/led_control_defaults.yaml"
+  />
+
+  <!-- Run led_control_node -->
+  <node 
+    name="led_control" 
+    pkg="laser_control"   
+    type="led_control_node"
+    required="true"
+    output="screen"
+  />
+
+</launch>
