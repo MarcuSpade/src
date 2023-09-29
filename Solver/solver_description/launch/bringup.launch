@@ -1,6 +1,6 @@
 <?xml version="1.0"?> 
 <launch>
-
+<arg name="use_sim_time" default="false" />
 <param name="robot_description" command="$(find xacro)/xacro  '$(find solver_description)/urdf/solver.xacro'"/>
 
 <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">

@@ -1,0 +1,15 @@
+<!-- solver_launch.launch -->
+<launch>
+  <!-- Include the robot_state_publisher launch file -->
+  <include file="$(find solver_description)/launch/bringup.launch">
+    <arg name="use_sim_time" value="true"/>
+  </include>
+
+  <!-- Include the Gazebo launch file -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+  <!-- Run the spawner node from the gazebo_ros package -->
+  <node pkg="gazebo_ros" type="spawn_entity.py" name="spawn_entity" output="screen">
+    <remap from="/robot_description" to="/my_bot/robot_description"/>
+  </node>
+</launch>
