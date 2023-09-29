@@ -10,6 +10,6 @@
 
   <!-- Run the spawner node from the gazebo_ros package -->
   <node pkg="gazebo_ros" type="spawn_entity.py" name="spawn_entity" output="screen">
-    <remap from="/robot_description" to="/my_bot/robot_description"/>
+    <remap from="/robot_description" to="/cargobot/robot_description"/>
   </node>
 </launch>
