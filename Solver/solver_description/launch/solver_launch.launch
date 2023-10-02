@@ -9,7 +9,9 @@
   <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
 
   <!-- Run the spawner node from the gazebo_ros package -->
-  <node pkg="gazebo_ros" type="spawn_entity.py" name="spawn_entity" output="screen">
-    <remap from="/robot_description" to="/cargobot/robot_description"/>
-  </node>
+  <!-- Load the URDF model into the parameter server -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find solver_description)/urdf/solver.xacro" />
+
+  <!-- Run the spawn_entity.py script to spawn your robot -->
+  <node name="spawn_entity" pkg="solver_description" type="spawn_entity.py" output="screen" />
 </launch>
